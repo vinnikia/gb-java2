@@ -22,9 +22,9 @@ public class Animal implements Competitor {
     @Override
     public void run(int dist) {
         if (dist <= maxRunDistance) {
-            System.out.println(type + " " + name + " справился с кроссом");
+            System.out.println(type + " " + name + " справился с кроссом на "+dist+" м.");
         } else {
-            System.out.println(type + " " + name + " провалил кроссом");
+            System.out.println(type + " " + name + " провалил кросс на "+dist+" м.");
             onDistance = false;
         }
     }
@@ -32,9 +32,9 @@ public class Animal implements Competitor {
     @Override
     public void jump(int height) {
         if (height <= maxJumpHeight) {
-            System.out.println(type + " " + name + " справился с прыжком");
+            System.out.println(type + " " + name + " справился с прыжком на "+height+" м.");
         } else {
-            System.out.println(type + " " + name + " провалил прыжок");
+            System.out.println(type + " " + name + " провалил прыжок на "+height+" м.");
             onDistance = false;
         }
     }
@@ -47,9 +47,9 @@ public class Animal implements Competitor {
             return;
         }
         if (dist <= maxSwimDistance) {
-            System.out.println(type + " " + name + " проплыл удачно");
+            System.out.println(type + " " + name + " проплыл удачно дистанцию "+dist+" м.");
         } else {
-            System.out.println(type + " " + name + " не смог проплыть");
+            System.out.println(type + " " + name + " не смог проплыть дистанцию "+dist+" м.");
             onDistance = false;
         }
     }
@@ -61,6 +61,10 @@ public class Animal implements Competitor {
 
     @Override
     public void info() {
-        System.out.println(type + " " + name +" На дистанции: " + onDistance);
+        if(this.isDistance()) {
+            System.out.println(type + " " + name + " на дистанции. Молодец.");
+        } else {
+            System.out.println(type + " " + name + ", к сожалению, сошёл с дистанции");
+        }
     }
 }
