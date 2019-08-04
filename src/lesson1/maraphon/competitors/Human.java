@@ -21,9 +21,9 @@ public class Human implements Competitor {
     @Override
     public void run(int dist) {
         if (dist <= maxRunDistance) {
-            System.out.println(name + " справился с кроссом");
+            System.out.println(name + " справился с кроссом на "+dist+" м.");
         } else {
-            System.out.println(name + " провалил кроссом");
+            System.out.println(name + " провалил кросс на "+dist+" м.");
             active = false;
         }
     }
@@ -31,9 +31,9 @@ public class Human implements Competitor {
     @Override
     public void jump(int height) {
         if (height <= maxJumpHeight) {
-            System.out.println(name + " справился с прыжком");
+            System.out.println(name + " справился с прыжком на "+height+" м.");
         } else {
-            System.out.println(name + " провалил прыжок");
+            System.out.println(name + " провалил прыжок на "+height+" м.");
             active = false;
         }
     }
@@ -46,9 +46,9 @@ public class Human implements Competitor {
             return;
         }
         if (dist <= maxSwimDistance) {
-            System.out.println(name + " проплыл удачно");
+            System.out.println(name + " проплыл удачно дистанцию "+dist+" м.");
         } else {
-            System.out.println(name + " не смог проплыть");
+            System.out.println(name + " не смог проплыть дистанцию "+dist+" м.");
             active = false;
         }
     }
@@ -60,6 +60,10 @@ public class Human implements Competitor {
 
     @Override
     public void info() {
-        System.out.println(name +" На дистанции: " + active);
+        if(this.isDistance()) {
+            System.out.println(name + " на дистанции. Молодец.");
+        } else {
+            System.out.println(name + ", к сожалению, сошёл с дистанции");
+        }
     }
 }
