@@ -1,0 +1,16 @@
+#sendButton{
+    -fx-background-color: #000;
+    -fx-text-fill:#fff;
+    -fx-font-size: 20;
+}
+#sendButton:hover{
+    -fx-background-color: rgba(3, 3, 3, 0.75);
+}
+
+.text-field{
+    -fx-font-size: 20;
+}
+
+#textArea {
+    -fx-font-size: 11;
+}
