@@ -54,7 +54,34 @@ public class ClientHandler {
                             break;
                         }
 
-                        server.broadcastMsg(nick + " : " + str);
+                        boolean isPrivateMsg = false;
+                        String toNick = null;
+                        if(str.startsWith("/w")) {
+                            String[] parts = str.split(" +",3);
+                            try {
+                                if (parts.length == 2) {
+                                    throw new IllegalArgumentException("Сообщение не указано");
+                                } else if (parts.length <= 1) {
+                                    throw new IllegalArgumentException("Ник получателя не указан");
+                                }
+                                toNick = parts[1];
+                                if (!AuthService.isUserExists(toNick)) {
+                                    throw new IllegalArgumentException("Получатель не найден. Сообщение не доставлено");
+                                }
+                            } catch (IllegalArgumentException e) {
+                                sendMSG(e.getMessage());
+                                continue;
+                            }
+
+                            isPrivateMsg = true;
+                            str = parts[2];
+
+                        }
+                        if(isPrivateMsg) {
+                            server.privateMsg(toNick,nick + " : " + str);
+                        } else {
+                            server.broadcastMsg(nick + " : " + str);
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -72,6 +99,10 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNick() {
+        return this.nick;
     }
 
     public void sendMSG(String msg) {

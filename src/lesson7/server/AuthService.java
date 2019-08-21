@@ -42,4 +42,18 @@ public class AuthService {
 
         return null;
     }
+
+    public static boolean isUserExists(String nick) {
+        String sql = String.format("SELECT COUNT(*) FROM main WHERE nickname = '%s'", nick);
+        try {
+            ResultSet rs =stmt.executeQuery(sql);
+            if(rs.next() && rs.getInt(1) == 1){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
