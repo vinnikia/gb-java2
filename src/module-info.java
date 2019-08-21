@@ -6,4 +6,5 @@ module Java2 {
 
     opens lesson4;
     opens lesson7.client;
+    opens lesson8.client;
 }
