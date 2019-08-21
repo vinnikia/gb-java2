@@ -45,6 +45,15 @@ public class Server {
         }
     }
 
+    public  void privateMsg(String toNick, String msg) {
+        for (ClientHandler c:clients ) {
+            if(c.getNick().equals(toNick)) {
+                System.out.println(c.getNick());
+                c.sendMSG(msg);
+            }
+        }
+    }
+
     public void subscribe(ClientHandler clientHandler){
         clients.add(clientHandler);
     }
