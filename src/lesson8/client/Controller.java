@@ -151,7 +151,7 @@ public class Controller {
             stage = (Stage) textField.getScene().getWindow();
             stage.setTitle("Super chat : " + nick);
             stage.setOnCloseRequest(event -> {
-                System.out.println("buy");
+                System.out.println("bye");
                 try {
                     out.writeUTF("/end");
                 } catch (IOException e) {

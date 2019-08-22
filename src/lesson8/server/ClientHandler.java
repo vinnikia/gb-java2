@@ -2,6 +2,7 @@ package lesson8.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
@@ -31,6 +32,11 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
+                    socket.setSoTimeout(6000);
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
+                try {
                     // цикл авторизации
                     while (true) {
                         String str = in.readUTF();
@@ -41,6 +47,7 @@ public class ClientHandler {
                             if (newNick != null) {
                                 if(!server.isLoginAuthorised(token[1])){
                                     sendMSG("/authok "+newNick);
+                                    socket.setSoTimeout(0);
                                     nick = newNick;
                                     login = token[1];
                                     server.subscribe(this);
