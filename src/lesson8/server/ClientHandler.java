@@ -32,7 +32,7 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
-                    socket.setSoTimeout(6000);
+                    socket.setSoTimeout(120000);
                 } catch (SocketException e) {
                     e.printStackTrace();
                 }
